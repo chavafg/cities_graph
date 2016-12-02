@@ -22,7 +22,7 @@ j = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]         # QUERETARO
 
 X = csr_matrix([a, b, c, d, e, f, g, h, i, j])
 
-print X
+print 'All available Connections:'
 print X.toarray().astype(int)
 
 str_repr= str(X)
@@ -45,10 +45,12 @@ def getTuples( mymatrix ):
 
 
 Tcsr = minimum_spanning_tree(X)
+print 'Minimum Spanning Tree:'
 print Tcsr.toarray().astype(int)
 print Tcsr
 
 sp = shortest_path(X, method='FW', directed=False)
+print 'Shortest Path:'
 print sp
 
 allConnections = getTuples( X )
@@ -65,8 +67,13 @@ print(nx.shortest_path(g,source=6,target=2))
 #draw_networkx_edges_labels(g,pos=nx.spring_layout(G))
 
 mst = getTuples(Tcsr)
-g2 = Graph()
+g2 = nx.Graph()
 g2.add_edges_from(mst)
-draw(g2)
+nx.draw_networkx_nodes(g2,pos,node_size=700, node_color="gray")
+nx.draw_networkx_edges(g2,pos,width=3,alpha=0.7,edge_color='green')
+nx.draw_networkx_labels(g2,pos,font_size=10)
+
+
+#draw(g2)
 
 show()
